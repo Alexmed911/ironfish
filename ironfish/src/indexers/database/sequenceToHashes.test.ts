@@ -7,15 +7,17 @@ import {
 } from '../../blockchain/database/sequenceToHashes'
 
 describe('SequenceToHashesValueEncoding', () => {
-  it('serializes the object into a buffer and deserializes to the original object', () => {
-    const encoder = new SequenceToHashesValueEncoding()
+  describe('with a list of hashes', () => {
+    it('serializes the object into a buffer and deserializes to the original object', () => {
+      const encoder = new SequenceToHashesValueEncoding()
 
-    const value: SequenceToHashesValue = {
-      hashes: [Buffer.alloc(32, 0), Buffer.alloc(32, 1), Buffer.alloc(32, 2)],
-    }
+      const value: SequenceToHashesValue = {
+        hashes: [Buffer.alloc(32, 0), Buffer.alloc(32, 1), Buffer.alloc(32, 2)],
+      }
 
-    const buffer = encoder.serialize(value)
-    const deserializedValue = encoder.deserialize(buffer)
-    expect(deserializedValue).toEqual(value)
+      const buffer = encoder.serialize(value)
+      const deserializedValue = encoder.deserialize(buffer)
+      expect(deserializedValue).toEqual(value)
+    })
   })
 })

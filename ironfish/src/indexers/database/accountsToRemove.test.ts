@@ -4,15 +4,17 @@
 import { AccountsToRemoveValue, AccountsToRemoveValueEncoding } from './accountsToRemove'
 
 describe('AccountsToRemoveValueEncoding', () => {
-  it('serializes the object into a buffer and deserializes to the original object', () => {
-    const encoder = new AccountsToRemoveValueEncoding()
+  describe('with a list of accounts', () => {
+    it('serializes the object into a buffer and deserializes to the original object', () => {
+      const encoder = new AccountsToRemoveValueEncoding()
 
-    const value: AccountsToRemoveValue = {
-      accounts: ['a', 'b', 'c'],
-    }
+      const value: AccountsToRemoveValue = {
+        accounts: ['a', 'b', 'c'],
+      }
 
-    const buffer = encoder.serialize(value)
-    const deserializedValue = encoder.deserialize(buffer)
-    expect(deserializedValue).toEqual(value)
+      const buffer = encoder.serialize(value)
+      const deserializedValue = encoder.deserialize(buffer)
+      expect(deserializedValue).toEqual(value)
+    })
   })
 })
